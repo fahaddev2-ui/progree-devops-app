@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: progree-app
+  labels:
+    app: progree-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: progree-app
+  template:
+    metadata:
+      labels:
+        app: progree-app
+    spec:
+      containers:
+        - name: progree-app
+          image: progree-devops-app:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3000"
